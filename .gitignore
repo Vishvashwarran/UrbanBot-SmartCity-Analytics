@@ -1,0 +1,12 @@
+env/
+__pycache__/
+*.pyc
+.env
+*.pem
+models/
+*.pt
+.DS_Store
+
+
+ 
+git commit -m "UrbanBot Smart City Analytics Platform"
