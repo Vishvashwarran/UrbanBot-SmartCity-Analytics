@@ -240,7 +240,7 @@ if st.button("🚀 Analyze Complaint"):
 
 
 recent = execute_query("""
-SELECT city, category, priority,se, created_at
+SELECT city, category, priority, created_at
 FROM citizen_complaints
 ORDER BY created_at DESC
 LIMIT 5
