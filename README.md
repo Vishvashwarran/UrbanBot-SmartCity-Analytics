@@ -64,18 +64,22 @@ It also includes:
 - Hotspot visualisations
 - Real-time database-driven KPIs
 
+![Dashboard](assets/Dashboard.png)
 ---
 
 ## 🧩 System Modules
 
 ### 1️⃣ Traffic Analysis
 AI-based congestion detection and city-wise traffic analytics.
+![Traffic](assets/Traffic.png)
 
 ### 2️⃣ Air Quality Monitoring
 Location-based AQI tracking with category classification.
+![AQI](assets/AQI.png)
 
 ### 3️⃣ Pothole Detection
 YOLO-based road damage detection for infrastructure maintenance.
+![Pothole](assets/Pothole.png)
 
 ### 4️⃣ Road Accident Detection
 Severity classification:
@@ -83,18 +87,22 @@ Severity classification:
 - Moderate
 - Major  
 Automatic alert generation for critical incidents.
+![Accident](assets/Accident.png)
 
 ### 5️⃣ Crowd Density Monitoring
 High-density area identification for public safety planning.
+![Overcrowding](assets/Overcrowd.png)
 
 ### 6️⃣ Infrastructure & Streetlight Monitoring
 Detection and logging of faulty public infrastructure.
+![Infra/Streetlight](assets/Streetlight.png)
 
 ### 7️⃣ Citizen Complaint Intelligence
 - Complaint registration
 - Sentiment analysis
 - Priority detection
 - Department mapping
+![Citizen Complaint](assets/CitizenComplaint.png)
 
 ### 8️⃣ UrbanBot AI Intelligence
 Multi-agent LLM assistant that can:
@@ -103,6 +111,7 @@ Multi-agent LLM assistant that can:
 - Draft official emails
 - Retrieve knowledge using RAG
 - Display latest monitoring images from AWS S3
+![Chatbot](assets/Chatbot.png)
 
 ---
 
