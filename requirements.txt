@@ -11,3 +11,6 @@ plotly
 nltk
 scikit-learn
 Pillow
+mysql
+joblib
+tensorflow
