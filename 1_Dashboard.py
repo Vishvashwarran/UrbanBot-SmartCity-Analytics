@@ -46,23 +46,29 @@ refresh_seconds = int(refresh_rate.split()[0])
 if auto_refresh:
     st_autorefresh(interval=refresh_seconds * 1000, key="dashboard_refresh")
 
-city_condition = ""
+traffic_city = ""
+aqi_city = ""
+crowd_city = ""
+infra_city = ""
 
 if selected_city != "All":
-    city_condition = f" AND city = '{selected_city}' "
+    traffic_city = f" AND city = '{selected_city}' "
+    aqi_city = f" AND city = '{selected_city}' "
+    crowd_city = f" AND city = '{selected_city}' "
+    infra_city = f" AND city = '{selected_city}' "
 
 # KPI QUERIES 
 
 traffic = execute_query(f"""
 SELECT COUNT(*) AS count
 FROM traffic_data
-WHERE congestion_level='high' {city_condition}
+WHERE congestion_level='high' {traffic_city}
 """)
 
 aqi = execute_query(f"""
 SELECT aqi, aqi_category
 FROM air_quality_data
-WHERE 1=1 {city_condition}
+WHERE 1=1 {aqi_city}
 ORDER BY timestamp DESC
 LIMIT 1
 """)
@@ -76,7 +82,7 @@ WHERE DATE(detected_at)=CURDATE()
 crowd = execute_query(f"""
 SELECT COUNT(*) AS count
 FROM crowd_density_data
-WHERE density_level IN ('high','extreme') {city_condition}
+WHERE density_level IN ('high','extreme') {crowd_city}
 """)
 
 potholes = execute_query("""
@@ -88,7 +94,7 @@ WHERE object_class='pothole'
 infra = execute_query(f"""
 SELECT COUNT(*) AS count
 FROM road_infra_images
-WHERE road_type='street_infra' {city_condition}
+WHERE road_type='street_infra' {infra_city}
 """)
 
 complaints = execute_query(f"""
