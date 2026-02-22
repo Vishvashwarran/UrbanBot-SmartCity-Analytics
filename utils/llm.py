@@ -9,10 +9,9 @@ client = OpenAI(
     base_url="https://api.groq.com/openai/v1"
 )
 
-# 🔹 LLM CALL
 def call_llm(prompt: str) -> str:
     response = client.chat.completions.create(
-        model="llama3-8b-8192",
+        model="llama-3.1-8b-instant",
         messages=[{"role": "user", "content": prompt}],
         temperature=0
     )
@@ -20,7 +19,6 @@ def call_llm(prompt: str) -> str:
     return response.choices[0].message.content.strip()
 
 
-# 🔹 EMBEDDING (for your RAG)
 def get_embedding(text: str):
     response = client.embeddings.create(
         model="text-embedding-3-small",
