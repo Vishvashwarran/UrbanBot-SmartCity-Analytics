@@ -91,7 +91,8 @@ FROM road_infra_annotations
 WHERE object_class='pothole'
 """)
 
-infra = execute_query(f"""
+infra = execute_query(f"""clear
+                      cc
 SELECT COUNT(*) AS count
 FROM road_infra_images
 WHERE road_type='street_infra' {infra_city}
