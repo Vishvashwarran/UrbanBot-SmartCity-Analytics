@@ -25,4 +25,7 @@ def get_embedding(text: str):
         input=text
     )
 
+
     return response.data[0].embedding
+
+    
