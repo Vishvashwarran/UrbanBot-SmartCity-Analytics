@@ -1,52 +1,30 @@
 import os
-import requests
+from openai import OpenAI
 from dotenv import load_dotenv
 
 load_dotenv()
 
-API_KEY = os.getenv("XAI_API_KEY")
+client = OpenAI(
+    api_key=os.getenv("GROQ_API_KEY"),
+    base_url="https://api.groq.com/openai/v1"
+)
 
+# 🔹 LLM CALL
 def call_llm(prompt: str) -> str:
+    response = client.chat.completions.create(
+        model="llama3-8b-8192",
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0
+    )
 
-    url = "https://api.x.ai/v1/chat/completions"
-
-    headers = {
-        "Authorization": f"Bearer {API_KEY}",
-        "Content-Type": "application/json",
-    }
-
-    payload = {
-        "model": "grok-2-latest",   # ✅ safest working model
-        "messages": [
-            {"role": "user", "content": prompt}
-        ],
-        "temperature": 0
-    }
-
-    response = requests.post(url, headers=headers, json=payload)
-
-    # 👇 VERY IMPORTANT FOR DEBUGGING
-    if response.status_code != 200:
-        print(response.text)
-
-    response.raise_for_status()
-
-    return response.json()["choices"][0]["message"]["content"]
+    return response.choices[0].message.content.strip()
 
 
-# 🔹 EMBEDDING FOR RAG
+# 🔹 EMBEDDING (for your RAG)
 def get_embedding(text: str):
-    headers = {
-        "Authorization": f"Bearer {API_KEY}",
-        "Content-Type": "application/json",
-    }
+    response = client.embeddings.create(
+        model="text-embedding-3-small",
+        input=text
+    )
 
-    payload = {
-        "model": "text-embedding-3-small",
-        "input": text
-    }
-
-    response = requests.post(EMBED_URL, headers=headers, json=payload)
-    response.raise_for_status()
-
-    return response.json()["data"][0]["embedding"]
+    return response.data[0].embedding
