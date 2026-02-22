@@ -1,29 +1,29 @@
+import os
 import requests
+from dotenv import load_dotenv
 
-OLLAMA_URL = "http://localhost:11434"
+load_dotenv()
 
-def call_llm(prompt):
+API_KEY = os.getenv("XAI_API_KEY")
 
-    response = requests.post(
-        f"{OLLAMA_URL}/api/generate",
-        json={
-            "model": "llama3",
-            "prompt": prompt,
-            "stream": False
-        }
-    )
-
-    return response.json()["response"]
+URL = "https://api.x.ai/v1/chat/completions"
 
 
-def get_embedding(text: str):
+def call_llm(prompt: str) -> str:
+    headers = {
+        "Authorization": f"Bearer {API_KEY}",
+        "Content-Type": "application/json",
+    }
 
-    response = requests.post(
-        f"{OLLAMA_URL}/api/embeddings",
-        json={
-            "model": "nomic-embed-text",
-            "prompt": text
-        }
-    )
+    payload = {
+        "model": "grok-beta",   # you can change later
+        "messages": [
+            {"role": "user", "content": prompt}
+        ],
+        "temperature": 0
+    }
 
-    return response.json()["embedding"]
+    response = requests.post(URL, headers=headers, json=payload)
+    response.raise_for_status()
+
+    return response.json()["choices"][0]["message"]["content"].strip()
