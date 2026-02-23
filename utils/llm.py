@@ -20,8 +20,9 @@ def call_llm(prompt: str) -> str:
 
 
 def get_embedding(text: str):
+    print("✅ USING GROQ EMBEDDING")
     response = client.embeddings.create(
-        model="text-embedding-3-small",
+        model="nomic-embed-text",
         input=text
     )
 

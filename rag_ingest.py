@@ -1,5 +1,4 @@
 from utils.db import execute_query, execute_write
-from utils.llm import get_embedding
 import uuid
 from datetime import datetime
 
@@ -8,14 +7,10 @@ from datetime import datetime
 print("🧹 Clearing old RAG knowledge...")
 execute_write("DELETE FROM rag_documents", ())
 
-
+DEFAULT_VECTOR = str([0.0] * 384)
 def insert(text, source_type, reference):
 
     try:
-        embedding = get_embedding(text)
-
-        # convert list → string for MySQL VECTOR
-        embedding_str = str(embedding)
 
         execute_write("""
             INSERT INTO rag_documents
@@ -26,7 +21,7 @@ def insert(text, source_type, reference):
             source_type,
             reference,
             text,
-            embedding_str,
+            DEFAULT_VECTOR,
             datetime.now()
         ))
 

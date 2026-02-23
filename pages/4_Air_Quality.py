@@ -36,10 +36,10 @@ col1, col2 = st.columns(2)
 with col1:
     city = st.text_input("City", placeholder="Eg : Chennai")
     station = st.selectbox("Monitoring Station", stations)
-    latitude = st.number_input("Latitude", format="%.6f")
+    latitude = st.number_input("Latitude", value=13.0827, format="%.6f")
 
 with col2:
-    longitude = st.number_input("Longitude", format="%.6f")
+    longitude = st.number_input("Longitude", value=80.2707, format="%.6f")
 
 st.subheader("🧪 Pollutant Values")
 

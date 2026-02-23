@@ -94,7 +94,7 @@ WHERE road_type='street_infra' {city_condition}
 complaints = execute_query(f"""
 SELECT COUNT(*) AS count
 FROM complaint_nlp_analysis
-WHERE sentiment = 'negative' {city_condition}
+WHERE sentiment = 'negative' 
 """)
 
 st.markdown("### 🚨 Key Urban Risk Indicators")
