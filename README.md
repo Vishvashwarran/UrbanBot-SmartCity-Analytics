@@ -9,8 +9,8 @@ The system is designed to assist city authorities in identifying critical events
 
 🌍 Live Deployment
 
-Deployed on AWS EC2
-(Cloud URL will be added after deployment)
+Deployed on AWS EC2 Server
+Live Application: http://40.192.16.177:8501
 
 
 ## 🎯 Project Objective
@@ -160,6 +160,14 @@ Visualisation:
 - Plotly
 
 ---
+
+**👩‍💻 Author**  
+Vishvashwarran V B  
+Data Scientist | AI Developer | Smart City Intelligence | Cybersecurity Enthusiast  
+
+**⚠️ Note**  
+The live system runs on a cloud environment (AWS free tier).  
+The first request may take some time while the backend services and ML models are loading.
 
 ## ⚙️ Run Locally
 
